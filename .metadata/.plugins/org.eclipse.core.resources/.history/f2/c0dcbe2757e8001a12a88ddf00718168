@@ -1,0 +1,171 @@
+//============================================================================
+// Name        : avaliacao2.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+//#include "..\inc\ednei_p2.h"
+using namespace std;
+
+
+#include <iostream>
+#include <vector>
+#include <math.h>
+
+
+class Funcao {
+public:
+	Funcao() {}
+	Funcao(Funcao* f) { }
+	double operator() (double x = 0) {
+		return x;
+	}
+	double integrar (Funcao* f, double x0, double x1, double step){
+		double _area = 0;
+		double i;
+		for (i = x0; i <= x1; i += step) {
+			cout << "f(x) = " << f->operator()(i) << "\n";
+			_area += ((f->operator()(i)) * step);
+		}
+		return (_area);
+	}
+	virtual ~Funcao() {} //destrutor padrao
+};
+
+
+class Constante : public Funcao {
+
+public:
+	Constante() : _value(0) {cout << "(" << this << ") Constante(x)=(" << _value << ") " << endl;}
+	Constante(double value) : _value(value) { cout << "(" << this << ") Constante(x)=(" << _value << ") " << endl; }
+	double operator()(double x) {
+
+		return (_value);
+	}
+	virtual ~Constante() {}
+
+private:
+	double _value;
+};
+
+
+class Escalar : public Funcao {
+public:
+	Escalar (double val,Funcao *f): _value(val), f(f){}
+	Escalar(Funcao* f) : f(f){ } //comentado porque estava dando conflito com o outro construtor
+	Escalar(double val) : _value(val) { cout << "(" << this << ") escalar(x)=(" << _value << ") " << endl; }
+	Escalar() { /*cout << "(" << this << ") Escalar Constructed!" << endl;*/ } //construtor padrao
+	double operator()(double x) {
+		double _escalar ;
+		_escalar = (*f)(x);
+		_escalar = _escalar * _value;
+		return (_escalar);
+	}
+private:
+	double _value;
+	Funcao* f;
+};
+
+
+class Potencial : public Funcao {
+public:
+	Potencial(double val, Funcao *f): _value(val), f(f){}
+	Potencial(Funcao* f) : f(f) {}
+	Potencial(double val) : _value(val) { cout << "(" << this << ") Potencial(" << _value << ") Constructed!" << endl; }
+	Potencial() { cout << "(" << this << ") Potencial Constructed!" << endl; } //construtor padrao
+	double operator()(double x){
+		double _potencial = _value;
+		int i;
+		for (i = 0; i < (x - 1); i++) {
+			_potencial *= _value;
+
+			if (x == 0) // Qualquer numero elevado a 0 é igual 1
+			{
+				_potencial = 1;
+			}
+		}
+		return (_potencial);
+	}
+private:
+	double _value;
+	Funcao* f;
+};
+
+class Exponencial : public Funcao {
+public:
+	Exponencial(double val, Funcao* f) : _value(val), f(f) {}
+	Exponencial(Funcao* f) : f(f) {}
+	Exponencial(double val) : _value(val) { cout << "(" << this << ") Exponencial(" << _value << ") Constructed!" << endl; }
+	Exponencial() { cout << "(" << this << ") Exponencial Constructed!" << endl; } //construtor padrao
+	double operator()(double x) {
+		double _exponencial = _value;
+		int i;
+		for (i = 0; i < (x - 1); i++) {
+			_exponencial *= _value;
+
+			if (x == 0) // Qualquer numero elevado a 0 é igual 1
+			{
+				_exponencial = 1;
+			}
+		}
+		return (_exponencial);
+	}
+private:
+	double _value;
+	Funcao* f;
+};
+
+class Seno : public Funcao {
+public:
+	Seno(double val, Funcao* f) {}
+	Seno(Funcao* f) {}
+	Seno(double val) {}
+	Seno() { cout << "(" << this << ") Seno Constructed!" << endl; } //construtor padrao
+	double operator()(double x) {
+		return (sin(x));
+	}
+
+};
+
+class Coseno : public Funcao {
+public:
+	Coseno(double val, Funcao* f) {}
+	Coseno(Funcao* f) {}
+	Coseno(double val) {}
+	Coseno() { cout << "(" << this << ") Coseno Constructed!" << endl; } //construtor padrao
+	double operator()(double x) {
+		return (cos(x));
+	}
+};
+
+
+class FuncaoAgregada : public Funcao {
+public:
+	void agrega(Funcao *f){
+		_myvector.push_back(f);
+	}
+	double operator()(const double x) {
+		double _funcaoAgregada=0;
+		for (it = _myvector.begin(); it != _myvector.end(); it++) {
+			_funcaoAgregada += static_cast<Funcao*>(*it)->operator()(x);
+		}
+		return _funcaoAgregada;
+
+	}
+private:
+	vector <Funcao*> _myvector;
+	vector <Funcao*> ::iterator it;
+};
+
+
+int main() {
+
+	cout << "ver 0.1" << endl;
+	Constante(5);
+	Constante();
+
+	return 0;
+}

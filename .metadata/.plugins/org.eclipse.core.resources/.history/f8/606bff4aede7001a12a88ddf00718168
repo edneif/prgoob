@@ -1,0 +1,95 @@
+/*
+ * ednei_p2.h
+ *
+ *  Created on: 26 de ago de 2020
+ *      Author: pc
+ */
+
+#ifndef EDNEI_P2_H_
+#define EDNEI_P2_H_
+
+
+class Funcao {
+public:
+	Funcao();
+	Funcao(Funcao *f);
+	virtual ~Funcao();
+	double operator() (double x=0) {return x;}
+private:
+
+};
+
+
+class Constante : public Funcao {
+public:
+	Constante();
+	Constante(double val) : _value(val) {}
+	double operator()(double) {return _value;}
+	virtual ~Constante();
+private:
+	double _value;
+
+};
+
+
+class Seno {
+public:
+	Seno();
+	virtual ~Seno();
+};
+
+
+class Coseno {
+public:
+	Coseno();
+	virtual ~Coseno();
+};
+
+
+class FuncaoAgregada {
+public:
+	FuncaoAgregada();
+	virtual ~FuncaoAgregada();
+};
+
+
+class Escalar {
+public:
+	Escalar();
+	Escalar (double val, Funcao *f): _value(val), f(f){}
+	Escalar(Funcao* f) : f(f){ }
+	Escalar(double val) : _value(val) { }
+	double operator()(double x) {
+			double _escalar = 0;
+			_escalar = (*f)(x);
+			_escalar = _escalar * _value;
+			return (_escalar);
+		}
+	virtual ~Escalar();
+private:
+	double _value;
+	Funcao* f;
+};
+
+
+class Potencial {
+public:
+	Potencial();
+	virtual ~Potencial();
+private:
+	double _value;
+};
+
+
+class Exponencial {
+public:
+	Exponencial();
+	virtual ~Exponencial();
+private:
+	double _value;
+};
+
+
+
+
+#endif /* EDNEI_P2_H_ */

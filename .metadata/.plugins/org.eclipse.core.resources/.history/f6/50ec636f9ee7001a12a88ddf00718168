@@ -1,0 +1,47 @@
+//============================================================================
+// Name        : avaliacao2.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+#include "..\inc\ednei_p2.h"
+using namespace std;
+
+Funcao::Funcao() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Funcao::~Funcao() {
+	// TODO Auto-generated destructor stub
+}
+
+
+Funcao::Constante() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Funcao::~Constante() {
+	// TODO Auto-generated destructor stub
+
+
+Funcao::Seno() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Funcao::~Seno() {
+		// TODO Auto-generated destructor stub
+
+
+
+
+
+int main() {
+
+	return 0;
+}

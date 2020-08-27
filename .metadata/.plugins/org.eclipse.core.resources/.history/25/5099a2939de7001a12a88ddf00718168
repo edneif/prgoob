@@ -1,0 +1,17 @@
+/*
+ * Funcao.h
+ *
+ *  Created on: 26 de ago de 2020
+ *      Author: pc
+ */
+
+#ifndef FUNCAO_H_
+#define FUNCAO_H_
+
+class Funcao {
+public:
+	Funcao();
+	virtual ~Funcao();
+};
+
+#endif /* FUNCAO_H_ */

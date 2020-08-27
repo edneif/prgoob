@@ -1,0 +1,7 @@
+17:35:54 **** Incremental Build of configuration Release for project DiceGamme ****
+Info: Internal Builder is used for build
+g++ -std=c++0x -O3 -Wall -c -fmessage-length=0 -o "src\\DiceGamme.o" "..\\src\\DiceGamme.cpp" 
+g++ -o DiceGamme.exe "src\\DiceGamme.o" 
+
+17:35:56 Build Finished. 0 errors, 0 warnings. (took 2s.49ms)
+
