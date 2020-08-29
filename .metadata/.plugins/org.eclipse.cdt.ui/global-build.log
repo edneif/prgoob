@@ -1,25 +1,4 @@
-11:12:23 **** Incremental Build of configuration Debug for project avaliacao2 ****
+22:02:08 **** Incremental Build of configuration Debug for project avaliacao2 ****
 Info: Internal Builder is used for build
 g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\avaliacao2.o" "..\\src\\avaliacao2.cpp" 
-..\src\avaliacao2.cpp: In member function 'double Funcao::integrar(Funcao*, double, double, double)':
-..\src\avaliacao2.cpp:27:66: warning: no return statement in function returning non-void [-Wreturn-type]
-  double integrar (Funcao* f, double x0, double x1, double step){ }
-                                                                  ^
-..\src\avaliacao2.cpp: In member function 'double Escalar::operator()(double)':
-..\src\avaliacao2.cpp:81:34: warning: no return statement in function returning non-void [-Wreturn-type]
-   double operator()(double x) {  }
-                                  ^
-..\src\avaliacao2.cpp: In member function 'double Potencial::operator()(double)':
-..\src\avaliacao2.cpp:94:30: warning: no return statement in function returning non-void [-Wreturn-type]
-  double operator()(double x){}
-                              ^
-..\src\avaliacao2.cpp: In member function 'double Exponencial::operator()(double)':
-..\src\avaliacao2.cpp:108:31: warning: no return statement in function returning non-void [-Wreturn-type]
-  double operator()(double x) {}
-                               ^
-..\src\avaliacao2.cpp: In member function 'double FuncaoAgregada::operator()(double)':
-..\src\avaliacao2.cpp:122:38: warning: no return statement in function returning non-void [-Wreturn-type]
-  double operator()(const double x) { }
-                                      ^
 g++ -o avaliacao2.exe "src\\avaliacao2.o" 
-Info: Nothing to build for avaliacao2
