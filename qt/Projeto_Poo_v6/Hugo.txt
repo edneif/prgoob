@@ -1,0 +1,50 @@
+void file_log::applyfilter(LogFilter filter){
+
+    QString value, hh, min, sec, linha;
+    QTime hora;
+    _vec_temp.clear();
+    _vec_time.clear();
+    _vec_temp.append(10000);
+    _vec_time.append(QTime(0,0,0));
+    _arquivo->seek(0);
+
+
+    while (!_arquivo->atEnd()){
+        linha = _arquivo->readLine();
+        value = linha.mid(30,12);
+        hh = linha.mid(9,2);
+        min = linha.mid(12,2);
+        sec = linha.mid(15,2);
+        hora.setHMS(hh.toInt(),min.toInt(),sec.toInt());
+
+        if (value.contains(filter.getQueryStr(),Qt::CaseInsensitive)){
+            value= filter.getQueryValue(value);
+            _vec_temp.append(value.toInt());
+            _vec_time.append(hora);
+        }
+    }
+
+}
+
+
+class LogFilter {
+public:
+ virtual QString getQueryStr() = 0;
+ virtual int getQueryValue(QString param) = 0;
+}
+
+class TileFilter: public LogFilter {
+ QString getQueryStr(){
+  return ".01QPT";
+ };
+ int getQueryValue(QString param){
+  return param.mid(6,6).toInt();
+ }
+}
+
+class TileTempFilter: public LogFilter {
+ QString getQueryStr(){
+  return ".01QTT";
+ };
+
+}
